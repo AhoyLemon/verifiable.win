@@ -1,0 +1,18 @@
+.javascripts
+  script(src="js/libraries/jquery.min.js")
+  
+  script(src="js/libraries/chart.js")
+  
+  if testing
+    script(src="js/libraries/vue-charts.js")
+    script(src="js/libraries/moment.js")
+    script(src="js/libraries/vue.full.js")
+  else
+    script(src="js/libraries/vue-charts.min.js")
+    script(src="js/libraries/moment.min.js")
+    script(src="js/libraries/vue.min.js")
+    
+  script(type="text/javascript").
+    Vue.use(VueCharts);
+    
+  script(src="js/min/chart.min.js")

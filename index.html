@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Fake Chart Tests</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Where members of the Trump family can enter in passwords to EARN POINTS.">
+    <meta http-equiv="last-modified" content="2018-03-20@16:23:27">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Bitter:400,400i,700|Quicksand">
+    <link href="css/charts.css?lastUpdated=2018-03-20@16:23:27" rel="stylesheet">
+  </head>
+  <body>
+    <main id="app">
+      <!--| {{chart.type}}-->
+      <h2 class="pie-picker"><span>show me</span>
+        <select v-model="pieMoreOrLess" v-on:change="slicePie()">
+          <option value="wayMore">way more</option>
+          <option value="slightlyMore">slightly more</option>
+          <option value="same">the same</option>
+          <option value="slightlyLess">slightly less</option>
+          <option value="wayLess">way less</option>
+        </select>
+        <input type="text" v-model="pie.labels[0]" placeholder="javascript errors"><span v-text="thanOrAs"></span>
+        <input type="text" v-model="pie.labels[0]" placeholder="PHP errors"><span>and</span>
+        <input type="text" placeholder="that's it.">
+      </h2>
+      <h2 class="line-picker" style="display:none"><span>show me </span>
+        <select v-model="trend" v-on:change="changeTrend()">
+          <option value="veryUp">a sharp increase</option>
+          <option value="slightlyUp">a slight increase</option>
+          <option value="flat">no noticeable difference</option>
+          <option value="slightlyDown">a slight decrease</option>
+          <option value="veryDown">a sharp decrease</option>
+        </select><span>in </span>
+        <input type="text" placeholder="marijuana use"><span>over the last</span>
+        <select v-model="timeline" v-on:change="changeTimeline()">
+          <option>6 months</option>
+          <option>year</option>
+          <option>5 years</option>
+          <option>decade</option>
+          <option>20 years</option>
+          <option>50 years</option>
+        </select>
+        <button v-on:click="showMe()"><span>GENERATE</span></button>
+      </h2>
+      <!--chartjs-line(:labels="chart.labels" :fill="true" :data="chart.points" :option="chart.options" :bind="true")-->
+      <chartjs-doughnut :labels="pie.labels" :data="pie.percent" :bind="true"></chartjs-doughnut>
+    </main>
+    <div class="javascripts">
+      <script src="js/libraries/jquery.min.js"></script>
+      <script src="js/libraries/chart.js"></script>
+      <script src="js/libraries/vue-charts.js"></script>
+      <script src="js/libraries/moment.js"></script>
+      <script src="js/libraries/vue.full.js"></script>
+      <script type="text/javascript">
+        Vue.use(VueCharts);
+        
+      </script>
+      <script src="js/min/chart.min.js"></script>
+    </div>
+  </body>
+</html>
