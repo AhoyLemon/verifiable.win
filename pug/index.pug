@@ -13,57 +13,10 @@ html(lang="en")
     main#app
       //| {{chart.type}}
       
-      h2.pie-picker
-        span show me
-        
-        select(v-model="pieMoreOrLess" v-on:change="slicePie()")
-          option(value="wayMore") way more
-          option(value="slightlyMore") slightly more
-          option(value="same") the same
-          option(value="slightlyLess") slightly less
-          option(value="wayLess") way less
-
-          
-        
-        input(type="text" v-model="pie.labels[0]" placeholder="javascript errors")
-        
-        span(v-text="thanOrAs")
-        
-        input(type="text" v-model="pie.labels[0]" placeholder="PHP errors")
-        
-        span and
-        
-        input(type="text" placeholder="that's it.")
-        
-      
-      h2(style="display:none").line-picker
-        span show me 
-        
-        select(v-model="trend" v-on:change="changeTrend()")
-          option(value="veryUp") a sharp increase
-          option(value="slightlyUp") a slight increase
-          option(value="flat") no noticeable difference
-          option(value="slightlyDown") a slight decrease
-          option(value="veryDown") a sharp decrease
-          
-        span in 
-        
-        input(type="text" placeholder="marijuana use")
-        
-        span over the last
-        
-        select(v-model="timeline" v-on:change="changeTimeline()")
-          option 6 months
-          option year
-          option 5 years
-          option decade
-          option 20 years
-          option 50 years
-        
-        button(v-on:click="showMe()")
-          span GENERATE
+      include partials/_build-pie.pug
+      include partials/_build-line.pug
       
       //chartjs-line(:labels="chart.labels" :fill="true" :data="chart.points" :option="chart.options" :bind="true")
-      chartjs-doughnut(:labels="pie.labels" :data="pie.percent" :bind="true")
+      chartjs-pie(:labels="chart.labels" :data="chart.points" :bind="true" :option="chart.options")
           
     include partials/_javascripts.pug

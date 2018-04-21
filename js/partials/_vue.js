@@ -1,3 +1,6 @@
+// jshint -W104
+// jshint -W117
+
 var app = new Vue({
   el: '#app',
   data: {
@@ -9,11 +12,13 @@ var app = new Vue({
     pie: {
       labels: [
         'javascript errors',
-        'PHP errors'
+        'PHP errors',
+        '.NET errors'
       ],
       percent: [
         70,
-        30
+        30,
+        40
       ]
     },
     
@@ -25,8 +30,13 @@ var app = new Vue({
       type: 'doughnut',
       
       options: {
+        cutoutPercentage: 10,
+        legend: {
+          position: 'bottom'
+        },
         animation: {
-          duration: 4000,
+          duration: 2000,
+          animateScale: true,
           onComplete: function(e) {
             console.log(e);
           }
@@ -53,7 +63,7 @@ var app = new Vue({
       var m;
       if (self.timeline == "6 months") {
         c = 6;
-        m = "month"
+        m = "month";
         
       } else if (self.timeline == "year") {
         c = 12;
@@ -78,12 +88,12 @@ var app = new Vue({
       var d = moment().subtract( (c + 1), m);
       
       if (m == 'month') {
-        for (var i = 0; i < c; i++) { 
+        for (let i = 0; i < c; i++) { 
           d = moment(d).add(1, m);
           a.push(moment(d).format('MMMM YYYY'));
         }
       } else if (m == 'year') {
-        for (var i = 0; i < c; i++) { 
+        for (let i = 0; i < c; i++) { 
           d = moment(d).add(1, m);
           a.push(moment(d).format('YYYY'));
         }
@@ -122,18 +132,18 @@ var app = new Vue({
     slicePie: function() {
       var self = this;
       
-      var sliceCount = self.pie.labels.length
+      var sliceCount = self.pie.labels.length;
       var equalSlice = parseInt(100 / sliceCount);
       //alert(sliceCount);
       let a = [];
       let rMin;
       let rMax;
-      if (self.pieMoreOrLess == "wayMore") {
-        rMin = 50;
-        rMax = 200;
-      } else if (self.pieMoreOrLess == "slightlyMore") {
-        rMin = 10;
-        rMax = 24;
+      
+      if (self.pieMoreOrLess == "wayMore") { rMin = 50; rMax = 200;
+      } else if (self.pieMoreOrLess == "slightlyMore") { rMin = 10; rMax = 24;
+      } else if (self.pieMoreOrLess == "same") { rMin = 1; rMax = 1;
+      } else if (self.pieMoreOrLess == "slightlyLess") { rMin = -10; rMax = -24;
+      } else if (self.pieMoreOrLess == "wayLess") { rMin = -40; rMax = -100;
       }
       
       a.push(equalSlice + (equalSlice * (getRandomInt(rMax,rMin) / 100)));  
@@ -141,10 +151,9 @@ var app = new Vue({
         a.push(equalSlice);
       }
       
-      
       self.pie.percent = a;
-      
-      
+      self.chart.labels = self.pie.labels;
+      self.chart.points = self.pie.percent;
       
     }
     
@@ -155,7 +164,7 @@ var app = new Vue({
   
   computed: {
     thanOrAs: function() {
-      var self = this
+      var self = this;
       if (self.pieMoreOrLess == "same") {
         return ' as ';
       } else {

@@ -1,0 +1,18 @@
+
+<h2 class="pie-picker"><span>show me</span>
+  <select v-model="pieMoreOrLess" v-on:change="slicePie()">
+    <option value="wayMore">way more</option>
+    <option value="slightlyMore">slightly more</option>
+    <option value="same">the same</option>
+    <option value="slightlyLess">slightly less</option>
+    <option value="wayLess">way less</option>
+  </select>
+  <input type="text" v-model="pie.labels[0]" placeholder="javascript errors"/><span v-text="thanOrAs"></span>
+  <input type="text" v-model="pie.labels[1]" placeholder="PHP errors"/><span><span>and</span>
+    <input type="text" v-model="pie.labels[2]" placeholder="that's it."/></span><span v-if="pie.labels[2]"><span>and</span>
+    <input type="text" v-model="pie.labels[3]" placeholder="that's it."/></span><span v-if="pie.labels[3]"><span>and</span>
+    <input type="text" v-model="pie.labels[4]" placeholder="that's it."/></span><span v-if="pie.labels[4]"><span>and</span>
+    <input type="text" v-model="pie.labels[5]" placeholder="that's it."/></span><span v-if="pie.labels[5]"><span>and</span>
+    <input type="text" v-model="pie.labels[6]" placeholder="that's it."/></span><span>
+    <button v-on:click="slicePie()">bake pie</button></span>
+</h2>

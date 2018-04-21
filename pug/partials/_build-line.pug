@@ -1,0 +1,26 @@
+h2(style="display:none").line-picker
+  span show me 
+
+  select(v-model="trend" v-on:change="changeTrend()")
+    option(value="veryUp") a sharp increase
+    option(value="slightlyUp") a slight increase
+    option(value="flat") no noticeable difference
+    option(value="slightlyDown") a slight decrease
+    option(value="veryDown") a sharp decrease
+
+  span in 
+
+  input(type="text" placeholder="marijuana use")
+
+  span over the last
+
+  select(v-model="timeline" v-on:change="changeTimeline()")
+    option 6 months
+    option year
+    option 5 years
+    option decade
+    option 20 years
+    option 50 years
+
+  button(v-on:click="showMe()")
+    span GENERATE
