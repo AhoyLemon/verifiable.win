@@ -1,0 +1,12 @@
+
+<h2 class="line-picker" v-if="chart.type == 'lines'"><span>prove that as </span>
+  <input type="text" v-model="lines[0].label"/>
+  <select v-model="firstTrend">
+    <option value="goesUp">goes up</option>
+    <option value="goesDown">goes down</option>
+    <option value="fluxuates">fluxuates</option>
+    <option value="flat">stays flat</option>
+  </select><span>, </span>
+  <input type="text" v-model="lines[1].label"/>
+  <button v-on:click="changeTimeline()"><span>GENERATE</span></button>
+</h2>

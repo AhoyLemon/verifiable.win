@@ -1,4 +1,4 @@
-h2.pie-picker
+h2.pie-picker(v-if="chart.type == 'pie'")
   span show me
 
   select(v-model="pieMoreOrLess" v-on:change="slicePie()")

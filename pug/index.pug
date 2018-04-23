@@ -1,6 +1,6 @@
 - var testing = true
 - var siteTitle = "Fake Chart Tests"
-- var siteURL = "http://trumps.pw"
+- var siteURL = ""
 - var fPlusURL = false
 - var description = "Where members of the Trump family can enter in passwords to EARN POINTS."
 - var d = new Date()
@@ -13,10 +13,17 @@ html(lang="en")
     main#app
       //| {{chart.type}}
       
-      include partials/_build-pie.pug
-      include partials/_build-line.pug
+      //-include partials/_build-line.pug
+      include partials/_build-lines.pug
+      //-include partials/_build-pie.pug
       
-      //chartjs-line(:labels="chart.labels" :fill="true" :data="chart.points" :option="chart.options" :bind="true")
-      chartjs-pie(:labels="chart.labels" :data="chart.points" :bind="true" :option="chart.options")
+      
+      
+      //-section(v-if="chart.type == 'line'")
+        chartjs-line(:labels="chart.labels" :datasets="line" :bind="true" :option="chart.options")
+      section(v-if="chart.type == 'lines'")
+        chartjs-line(:labels="chart.labels" :datasets="lines" :bind="true" :option="chart.options")
+      //-section(v-if="chart.type == 'pie'")
+        chartjs-pie(:labels="chart.labels" :data="chart.points" :bind="true" :option="chart.options")
           
     include partials/_javascripts.pug

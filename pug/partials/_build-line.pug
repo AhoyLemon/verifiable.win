@@ -1,4 +1,4 @@
-h2(style="display:none").line-picker
+h2.line-picker(v-if="chart.type == 'line'")
   span show me 
 
   select(v-model="trend" v-on:change="changeTrend()")
@@ -10,7 +10,7 @@ h2(style="display:none").line-picker
 
   span in 
 
-  input(type="text" placeholder="marijuana use")
+  input(type="text" v-model="line[0].label")
 
   span over the last
 
@@ -22,5 +22,5 @@ h2(style="display:none").line-picker
     option 20 years
     option 50 years
 
-  button(v-on:click="showMe()")
+  button(v-on:click="changeTimeline()")
     span GENERATE

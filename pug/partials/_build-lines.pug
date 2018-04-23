@@ -1,0 +1,24 @@
+h2.lines-picker(v-if="chart.type == 'lines'")
+  
+  span prove that as 
+  
+  input(type="text" v-model="lines[0].label")
+  
+  select(v-model="comparison[0].trend")
+    option(value="goesUp") goes up
+    option(value="goesDown") goes down
+    option(value="fluxuates") fluxuates
+    option(value="flat") stays flat
+  
+  span , 
+  
+  input(type="text" v-model="lines[1].label")
+  
+  select(v-model="comparison[1].trend")
+    option(value="goesUp") goes up
+    option(value="goesDown") goes down
+    option(value="fluxuates") fluxuates
+    option(value="flat") stays flat
+
+  button(v-on:click="changeTimeline()")
+    span GENERATE

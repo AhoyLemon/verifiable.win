@@ -172,13 +172,13 @@ svg {
   overflow: hidden; }
 
 body {
-  background: #212121; }
+  background: #eee; }
 
 main {
-  font-family: "Bitter", sans-serif;
+  font-family: "Bitter", serif;
   color: green; }
   main h2 {
-    color: #eee;
+    color: #212121;
     text-align: center;
     padding-bottom: 1em;
     padding-top: 1em; }
