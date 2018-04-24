@@ -1,5 +1,10 @@
 body { background: $white; }
 
-main { font-family: "Bitter", serif; color:green;
+main { font-family: "Bitter", serif;
   h2 { color: $black; text-align: center; padding-bottom: 1em; padding-top: 1em; }
+  
+  .chart-holder { padding: 5vw;
+    canvas { max-width: 100%; }
+  }
+  
 }

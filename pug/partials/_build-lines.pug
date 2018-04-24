@@ -4,7 +4,7 @@ h2.lines-picker(v-if="chart.type == 'lines'")
   
   input(type="text" v-model="lines[0].label")
   
-  select(v-model="comparison[0].trend")
+  select(v-model="comparison[0].trend" v-on:change="newComparison()")
     option(value="goesUp") goes up
     option(value="goesDown") goes down
     option(value="fluxuates") fluxuates

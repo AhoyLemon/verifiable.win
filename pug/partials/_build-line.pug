@@ -10,7 +10,10 @@ h2.line-picker(v-if="chart.type == 'line'")
 
   span in 
 
-  input(type="text" v-model="line[0].label")
+  input(type="text" v-model="line[0].label" list="LineMeasures")
+  datalist#LineMeasures
+    option(v-for="item in r.lineMeasures") {{item}}
+      
 
   span over the last
 

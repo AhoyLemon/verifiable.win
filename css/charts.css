@@ -175,13 +175,16 @@ body {
   background: #eee; }
 
 main {
-  font-family: "Bitter", serif;
-  color: green; }
+  font-family: "Bitter", serif; }
   main h2 {
     color: #212121;
     text-align: center;
     padding-bottom: 1em;
     padding-top: 1em; }
+  main .chart-holder {
+    padding: 5vw; }
+    main .chart-holder canvas {
+      max-width: 100%; }
 
 /*
 
