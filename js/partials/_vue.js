@@ -20,7 +20,7 @@ var app = new Vue({
     timeline: "6 months",
 
     pie: {
-      labels:  [ 'javascript errors', 'PHP errors', '.NET errors' ],
+      labels:  randomFrom(pieComparisons),
       percent: [ 70, 30, 40 ]
     },
 
