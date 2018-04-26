@@ -6,9 +6,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Where members of the Trump family can enter in passwords to EARN POINTS.">
-    <meta http-equiv="last-modified" content="2018-03-24@16:28:42">
+    <meta http-equiv="last-modified" content="2018-03-26@16:22:24">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Bitter:400,400i,700|Quicksand">
-    <link href="css/charts.css?lastUpdated=2018-03-24@16:28:42" rel="stylesheet">
+    <link href="css/charts.css?lastUpdated=2018-03-26@16:22:24" rel="stylesheet">
   </head>
   <body>
     <main id="app">
@@ -69,6 +69,32 @@
           <input type="text" v-model="pie.labels[6]" placeholder="that's it."></span><span>
           <button v-on:click="slicePie()">bake pie</button></span>
       </h2>
+      <h2 class="pie-picker" v-if="chart.type == 'bars'"><span>show me</span>
+        <select v-model="bars.amounts[0]" v-on:change="buildBars()">
+          <option v-for="opt in bars.barSizes" v-bind:value="opt.value">{{opt.text}}</option>
+        </select>
+        <input type="text" v-model="bars.labels[0]"><span>and</span>
+        <select v-model="bars.amounts[1]" v-on:change="buildBars()">
+          <option v-for="opt in bars.barSizes" v-bind:value="opt.value">{{opt.text}}</option>
+        </select>
+        <input type="text" v-model="bars.labels[1]"><span v-if="bars.labels[1]"><span>and
+            <select v-model="bars.amounts[2]" v-on:change="buildBars()">
+              <option v-for="opt in bars.barSizes" v-bind:value="opt.value">{{opt.text}}</option>
+            </select>
+            <input type="text" v-model="bars.labels[2]" placeholder="that's it."></span></span><span v-if="bars.labels[2]"><span>and
+            <select v-model="bars.amounts[3]" v-on:change="buildBars()" v-show="bars.labels[3]">
+              <option v-for="opt in bars.barSizes" v-bind:value="opt.value">{{opt.text}}</option>
+            </select>
+            <input type="text" v-model="bars.labels[3]" placeholder="that's it."></span></span><span v-if="bars.labels[3]"><span>and
+            <select v-model="bars.amounts[4]" v-on:change="buildBars()" v-show="bars.labels[4]">
+              <option v-for="opt in bars.barSizes" v-bind:value="opt.value">{{opt.text}}</option>
+            </select>
+            <input type="text" v-model="bars.labels[4]" placeholder="that's it."></span></span><span v-if="bars.labels[4]"><span>and
+            <select v-model="bars.amounts[5]" v-on:change="buildBars()" v-show="bars.labels[5]">
+              <option v-for="opt in bars.barSizes" v-bind:value="opt.value">{{opt.text}}</option>
+            </select>
+            <input type="text" v-model="bars.labels[5]" placeholder="that's it."></span></span>
+      </h2>
       <div class="chart-holder">
         <section v-if="chart.type == 'line'">
           <chartjs-line :labels="chart.labels" :datasets="line" :bind="true" :option="chart.options"></chartjs-line>
@@ -78,6 +104,9 @@
         </section>
         <section v-if="chart.type == 'pie'">
           <chartjs-pie :labels="chart.labels" :data="chart.points" :bind="true" :option="chart.options" :backgroundcolor="pie.backgroundColors" :hoverbackgroundcolor="pie.backgroundColors"></chartjs-pie>
+        </section>
+        <section v-if="chart.type == 'bars'">
+          <chartjs-bar :labels="chart.labels" :data="chart.points" :bind="true" :option="chart.options" :backgroundcolor="bars.backgroundColors" :bordercolor="'rgba(0,0,0,0)'"></chartjs-bar>
         </section>
       </div>
     </main>

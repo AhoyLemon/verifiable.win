@@ -21,23 +21,21 @@ var app = new Vue({
     trend: 'veryUp',
     timeline: "6 months",
 
+    bars: {
+      labels: randomFrom(pieComparisons),
+      barSizes: barSizes,
+      amounts: [],
+      backgroundColors: [],
+      amount: [99,66,33,11]
+    },
     pie: {
       labels:  randomFrom(pieComparisons),
-      backgroundColors: [
-        /*
-        randomColor({ format: 'rgba', hue: 'red', luminosity: 'dark', alpha: 0.9 }),
-        randomColor({ format: 'rgba', hue: 'blue', luminosity: 'bright', alpha: 0.45 }),
-        randomColor({ format: 'rgba', hue: 'green', luminosity: 'bright', alpha: 0.45 }),
-        randomColor({ format: 'rgba', hue: 'orange', luminosity: 'bright', alpha: 0.45 }),
-        randomColor({ format: 'rgba', hue: 'purple', luminosity: 'bright', alpha: 0.45 }),
-        randomColor({ format: 'rgba', hue: 'pink', luminosity: 'bright', alpha: 0.45 })
-        */
-      ],
+      backgroundColors: [],
       percent: [ 70, 30, 40 ]
     },
 
     chart: {
-      type: 'pie',
+      type: 'bars',
 
       labels: [1,2,3,4,5,6],
       points: [],
@@ -55,17 +53,22 @@ var app = new Vue({
           }
         },
         tooltips: {
-          enabled: false
+          enabled: true
         },
         animation: {
           duration: 2000,
-          
+          onComplete: function(e) {
+            console.log(e);
+          },
           animateScale: true,
           
         },
         scales: {
           xAxes: [
-            { display: true }
+            { display: true,
+              fontColor: "White"
+            }
+            //fontColor: '#0000FF'
           ],
           yAxes: [{
             display: true,
@@ -353,8 +356,41 @@ var app = new Vue({
       self.chart.labels = self.pie.labels;
       self.chart.points = self.pie.percent;
 
-    }
+    },
 
+    buildBars: function() {
+      var self = this;
+      
+      
+      // Figure out the colors
+      let h = shuffle(hues);
+      for (let i = 0; i < self.bars.labels.length; i++) {
+        if (i == 0) {
+          self.bars.backgroundColors.push(randomColor({ hue: h[i], luminosity:'bright', alpha:1 }));
+        } else {
+          self.bars.backgroundColors.push(randomColor({ format: 'rgba', luminosity:'dark', hue: h[i], alpha:0.5 }));
+        }
+      }
+      
+      self.chart.points = [];
+      for (let i = 0; i < self.bars.labels.length; i++) {
+        let n = 0;
+        if (self.bars.amounts[i] == 100)     { n = (randomNumber(90,110) * 5); }
+        else if (self.bars.amounts[i] == 75) { n = (randomNumber(65,85) * 4); }
+        else if (self.bars.amounts[i] == 50) { n = (randomNumber(40,60) * 3); }
+        else if (self.bars.amounts[i] == 25) { n = (randomNumber(15,35) * 2); }
+        else if (self.bars.amounts[i] == 5)  { n = randomNumber(1,9); }
+        else if (self.bars.amounts[i] == 0)  { n = 0; }
+        self.chart.points.push(n);
+      }
+      
+      self.chart.labels = self.bars.labels;
+      self.chart.options.legend.display = false;
+      
+      self.chart.options.scales.yAxes[0].display = false;
+      
+    },
+    
   },
 
   computed: {
@@ -383,6 +419,13 @@ var app = new Vue({
     } else if (self.chart.type == 'pie') {
       self.chart.options.scales.xAxes[0].display = false;
       self.slicePie();
+    } else if (self.chart.type == 'bars') {
+      
+      self.bars.labels.forEach(function(element) {
+        self.bars.amounts.push(randomFrom(barSizes).value);
+      });
+      
+      self.buildBars();
     }
     
   }
