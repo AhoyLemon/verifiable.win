@@ -13,12 +13,16 @@ html(lang="en")
     main#app
       //| {{chart.type}}
       
-      include partials/_build-line.pug
-      include partials/_build-lines.pug
-      include partials/_build-pie.pug
-      include partials/_build-bars.pug
+      .chart-selector(v-bind:class="{ intro: showChart == false}")
+        section.intro
+          h1 Let's prove you're right!
+
+        include partials/_build-line.pug
+        include partials/_build-lines.pug
+        include partials/_build-pie.pug
+        include partials/_build-bars.pug
       
-      .chart-holder
+      .chart-holder(v-if="showChart == true")
         section(v-if="chart.type == 'line'")
           chartjs-line(:labels="chart.labels" :datasets="line" :bind="true" :option="chart.options")
         section(v-if="chart.type == 'lines'")

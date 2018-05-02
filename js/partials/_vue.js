@@ -17,7 +17,7 @@ var app = new Vue({
         trend: 'goesDown'
       }
     ],
-    
+    showChart: false,
     trend: 'veryUp',
     timeline: "6 months",
 
@@ -320,7 +320,7 @@ var app = new Vue({
       let h = shuffle(hues);
       
       for (let i = 0; i < sliceCount; i++) {
-        if (i == 0) {
+        if (i === 0) {
           self.pie.backgroundColors.push(randomColor({ hue: h[i], luminosity:'bright', alpha:1 }));
         } else {
           self.pie.backgroundColors.push(randomColor({ format: 'rgba', luminosity:'dark', hue: h[i], alpha:0.5 }));
@@ -407,6 +407,10 @@ var app = new Vue({
 
   beforeMount: function() {
     var self = this;
+    
+    self.chart.type = randomFrom(chartTypes);
+    
+    
     
     if (self.chart.type == 'line') {
       self.changeTimeline();
