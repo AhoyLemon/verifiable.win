@@ -1,29 +1,34 @@
-h2.line-picker(v-if="chart.type == 'line'")
-  span show me 
+.chart-options.line(v-if="chart.type == 'line'")
+  span.criteria
+    span.word show me 
 
-  select(v-model="trend" v-on:change="changeTrend()")
-    option(value="veryUp") a sharp increase
-    option(value="slightlyUp") a slight increase
-    option(value="flat") no noticeable difference
-    option(value="slightlyDown") a slight decrease
-    option(value="veryDown") a sharp decrease
-
-  span in 
-
-  input(type="text" v-model="line[0].label" list="LineMeasures")
-  datalist#LineMeasures
-    option(v-for="item in r.lineMeasures") {{item}}
+    select(v-model="trend" v-on:change="changeTrend()")
+      option(value="veryUp") a sharp increase
+      option(value="slightlyUp") a slight increase
+      option(value="flat") no noticeable difference
+      option(value="slightlyDown") a slight decrease
+      option(value="veryDown") a sharp decrease
       
+    span.word in 
 
-  span over the last
+    input(type="text" v-model="line[0].label" list="LineMeasures")
+    datalist#LineMeasures
+      option(v-for="item in r.lineMeasures") {{item}}
+      
+  span.criteria
+  
+    span.word over the last
 
-  select(v-model="timeline" v-on:change="changeTimeline()")
-    option 6 months
-    option year
-    option 5 years
-    option decade
-    option 20 years
-    option 50 years
+    select(v-model="timeline" v-on:change="changeTimeline()")
+      option 6 months
+      option year
+      option 5 years
+      option decade
+      option 20 years
+      option 50 years
 
-  button(v-on:click="changeTimeline()")
-    span GENERATE
+  span(v-if="showChart == true")
+    button(v-on:click="changeTimeline()") GO
+  .button-holder(v-else)
+    button(v-on:click="showChart = true; changeTimeline()") Prove I'm right!
+    

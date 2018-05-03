@@ -1,0 +1,44 @@
+.chart-selector { font-family: $font;
+  
+  h1 { font-size:5.5vw; text-align: center; margin-bottom: 0.5em; }
+  
+  .chart-options {
+    .word { display: inline-block; padding-right: 1em; }
+    .comma { margin-left: -1em; }
+    select,input { font-family: $font; margin-right: 1em; }
+  }
+  
+  input::placeholder { color:$black; }
+  input::-webkit-calendar-picker-indicator { display: none; }
+}
+
+.chart-selector.intro { background: linear-gradient(to bottom, #4ac29a, #bdfff3);  @include position(fixed,0,0,0,0); @include flex-center(); padding:40px; 
+  .chart-options { max-width: 800px; margin-left: auto; margin-right: auto; }
+  .word, input, select { font-size:20px; }
+  input, select { background: transparent; border:none; }
+  
+  
+  .button-holder { margin-top: 30px; }
+  button { background-color:transparent; border:2px solid currentColor; font-size:20px; padding: 0.5em 1.5em; color:$blue; font-family: $font; font-weight: $bold; cursor: pointer;
+    &:hover { background:$blue; color:$white; }
+  }
+  
+  
+  input, select {
+    &:focus { background:$yellow; color:$blue; }
+  }
+  
+  input:focus::placeholder { color:$yellow; }
+  
+  .criteria { display: block; margin-bottom: 0.75em; }
+}
+
+
+.chart-selector.aside { background:#111; color:$white; @include position(fixed,0,null,0,0); width:320px; padding: 10px; line-height: 350%;
+  .word { padding-right: 0.25em; } 
+  button { color:$white; background:$blue;  font-size:120%; display: block; border:3px solid $blue; padding: 0.3em 1.5em; cursor: pointer;
+    &:hover { background: $white; color:$blue; }
+  }
+}
+
+

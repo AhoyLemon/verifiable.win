@@ -1,24 +1,28 @@
-h2.lines-picker(v-if="chart.type == 'lines'")
+.chart-options.lines(v-if="chart.type == 'lines'")
   
-  span prove that as 
-  
-  input(type="text" v-model="lines[0].label")
-  
-  select(v-model="comparison[0].trend" v-on:change="newComparison()")
-    option(value="goesUp") goes up
-    option(value="goesDown") goes down
-    option(value="fluxuates") fluxuates
-    option(value="flat") stays flat
-  
-  span , 
-  
-  input(type="text" v-model="lines[1].label")
-  
-  select(v-model="comparison[1].trend")
-    option(value="goesUp") goes up
-    option(value="goesDown") goes down
-    option(value="fluxuates") fluxuates
-    option(value="flat") stays flat
+  span.criteria
+    span.word prove that as 
 
-  button(v-on:click="changeTimeline()")
-    span GENERATE
+    input(type="text" v-model="lines[0].label")
+
+    select(v-model="comparison[0].trend" v-on:change="newComparison()")
+      option(value="goesUp") goes up
+      option(value="goesDown") goes down
+      option(value="fluxuates") fluxuates
+      option(value="flat") stays flat
+
+    span.comma.word , 
+    
+  span.criteria
+    input(type="text" v-model="lines[1].label")
+
+    select(v-model="comparison[1].trend")
+      option(value="goesUp") goes up
+      option(value="goesDown") goes down
+      option(value="fluxuates") fluxuates
+      option(value="flat") stays flat
+
+  span(v-if="showChart == true")
+    button(v-on:click="changeTimeline()") GO
+  .button-holder(v-else)
+    button(v-on:click="showChart = true; changeTimeline()") Prove I'm right!

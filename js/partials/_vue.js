@@ -36,7 +36,8 @@ var app = new Vue({
 
     chart: {
       type: 'bars',
-
+      responsive:true,
+      maintainAspectRatio:true,
       labels: [1,2,3,4,5,6],
       points: [],
 
@@ -410,8 +411,6 @@ var app = new Vue({
     
     self.chart.type = randomFrom(chartTypes);
     
-    
-    
     if (self.chart.type == 'line') {
       self.changeTimeline();
     } else if (self.chart.type == 'lines') {
@@ -428,7 +427,6 @@ var app = new Vue({
       self.bars.labels.forEach(function(element) {
         self.bars.amounts.push(randomFrom(barSizes).value);
       });
-      
       self.buildBars();
     }
     

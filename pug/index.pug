@@ -10,19 +10,19 @@ html(lang="en")
   head
     include partials/_head.pug
   body
-    main#app
-      //| {{chart.type}}
+    #app
       
-      .chart-selector(v-bind:class="{ intro: showChart == false}")
-        section.intro
-          h1 Let's prove you're right!
+      .chart-selector(v-bind:class="{ intro: showChart == false, aside: showChart == true }")
+        .inner
+          section.intro(v-if="showChart == false")
+            h1 Let's prove you're right!
 
-        include partials/_build-line.pug
-        include partials/_build-lines.pug
-        include partials/_build-pie.pug
-        include partials/_build-bars.pug
+          include partials/_build-line.pug
+          include partials/_build-lines.pug
+          include partials/_build-pie.pug
+          include partials/_build-bars.pug
       
-      .chart-holder(v-if="showChart == true")
+      main.chart-holder(v-if="showChart == true")
         section(v-if="chart.type == 'line'")
           chartjs-line(:labels="chart.labels" :datasets="line" :bind="true" :option="chart.options")
         section(v-if="chart.type == 'lines'")
@@ -30,6 +30,8 @@ html(lang="en")
         section(v-if="chart.type == 'pie'")
           chartjs-pie(:labels="chart.labels" :data="chart.points" :bind="true" :option="chart.options" :backgroundcolor="pie.backgroundColors" :hoverbackgroundcolor="pie.backgroundColors")
         section(v-if="chart.type == 'bars'")
-          chartjs-bar(:labels="chart.labels" :data="chart.points" :bind="true" :option="chart.options" :backgroundcolor="bars.backgroundColors" :bordercolor="'rgba(0,0,0,0)'")
+          chartjs-bar(:labels="chart.labels" :data="chart.points" :bind="true" :option="chart.options" :backgroundcolor="bars.backgroundColors" :height="125" :bordercolor="'rgba(0,0,0,0)'")
+          
+      footer(v-if="showChart == true")
           
     include partials/_javascripts.pug

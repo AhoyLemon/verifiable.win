@@ -181,7 +181,124 @@ main {
     text-align: center;
     padding-bottom: 1em;
     padding-top: 1em; }
-  main .chart-holder {
-    padding: 5vw; }
-    main .chart-holder canvas {
-      max-width: 100%; }
+
+.chart-holder {
+  padding-left: 340px;
+  padding-right: 20px; }
+
+.chart-selector {
+  font-family: "Bitter", serif; }
+  .chart-selector h1 {
+    font-size: 5.5vw;
+    text-align: center;
+    margin-bottom: 0.5em; }
+  .chart-selector .chart-options .word {
+    display: inline-block;
+    padding-right: 1em; }
+  .chart-selector .chart-options .comma {
+    margin-left: -1em; }
+  .chart-selector .chart-options select, .chart-selector .chart-options input {
+    font-family: "Bitter", serif;
+    margin-right: 1em; }
+  .chart-selector input::-webkit-input-placeholder {
+    color: #212121; }
+  .chart-selector input:-ms-input-placeholder {
+    color: #212121; }
+  .chart-selector input::-ms-input-placeholder {
+    color: #212121; }
+  .chart-selector input::placeholder {
+    color: #212121; }
+  .chart-selector input::-webkit-calendar-picker-indicator {
+    display: none; }
+
+.chart-selector.intro {
+  background: -webkit-gradient(linear, left top, left bottom, from(#4ac29a), to(#bdfff3));
+  background: -webkit-linear-gradient(top, #4ac29a, #bdfff3);
+  background: -o-linear-gradient(top, #4ac29a, #bdfff3);
+  background: linear-gradient(to bottom, #4ac29a, #bdfff3);
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-flex-wrap: wrap;
+  -moz-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  padding: 40px; }
+  .chart-selector.intro .chart-options {
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto; }
+  .chart-selector.intro .word, .chart-selector.intro input, .chart-selector.intro select {
+    font-size: 20px; }
+  .chart-selector.intro input, .chart-selector.intro select {
+    background: transparent;
+    border: none; }
+  .chart-selector.intro .button-holder {
+    margin-top: 30px; }
+  .chart-selector.intro button {
+    background-color: transparent;
+    border: 2px solid currentColor;
+    font-size: 20px;
+    padding: 0.5em 1.5em;
+    color: #113471;
+    font-family: "Bitter", serif;
+    font-weight: 600;
+    cursor: pointer; }
+    .chart-selector.intro button:hover {
+      background: #113471;
+      color: #eee; }
+  .chart-selector.intro input:focus, .chart-selector.intro select:focus {
+    background: #e9eab9;
+    color: #113471; }
+  .chart-selector.intro input:focus::-webkit-input-placeholder {
+    color: #e9eab9; }
+  .chart-selector.intro input:focus:-ms-input-placeholder {
+    color: #e9eab9; }
+  .chart-selector.intro input:focus::-ms-input-placeholder {
+    color: #e9eab9; }
+  .chart-selector.intro input:focus::placeholder {
+    color: #e9eab9; }
+  .chart-selector.intro .criteria {
+    display: block;
+    margin-bottom: 0.75em; }
+
+.chart-selector.aside {
+  background: #111;
+  color: #eee;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 320px;
+  padding: 10px;
+  line-height: 350%; }
+  .chart-selector.aside .word {
+    padding-right: 0.25em; }
+  .chart-selector.aside button {
+    color: #eee;
+    background: #113471;
+    font-size: 120%;
+    display: block;
+    border: 3px solid #113471;
+    padding: 0.3em 1.5em;
+    cursor: pointer; }
+    .chart-selector.aside button:hover {
+      background: #eee;
+      color: #113471; }

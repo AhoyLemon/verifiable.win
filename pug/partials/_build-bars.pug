@@ -1,41 +1,49 @@
-h2.pie-picker(v-if="chart.type == 'bars'")
-  span show me
-  
+.chart-options.bars(v-if="chart.type == 'bars'")
 
-  select(v-model="bars.amounts[0]" v-on:change="buildBars()")
-    option(v-for='opt in bars.barSizes' v-bind:value="opt.value") {{opt.text}}
-  input(type="text" v-model="bars.labels[0]")
+  span.criteria
+
+    span.word show me
   
-  span and
+    select(v-model="bars.amounts[0]" v-on:change="buildBars()")
+      option(v-for='opt in bars.barSizes' v-bind:value="opt.value") {{opt.text}}
+    input(type="text" v-model="bars.labels[0]")
   
-  select(v-model="bars.amounts[1]" v-on:change="buildBars()")
-    option(v-for='opt in bars.barSizes' v-bind:value="opt.value") {{opt.text}}
-  input(type="text" v-model="bars.labels[1]")
+  span.criteria
+    span.word and
+
+    select(v-model="bars.amounts[1]" v-on:change="buildBars()")
+      option(v-for='opt in bars.barSizes' v-bind:value="opt.value") {{opt.text}}
+    input(type="text" v-model="bars.labels[1]")
   
   
-  span(v-if="bars.labels[1]")
-    span and
-      select(v-model="bars.amounts[2]" v-on:change="buildBars()")
-        option(v-for='opt in bars.barSizes' v-bind:value="opt.value") {{opt.text}}
-      input(type="text" v-model="bars.labels[2]" placeholder="that's it." )
+  span.criteria(v-if="bars.labels[1]")
+    span.word and
+    select(v-model="bars.amounts[2]" v-on:change="buildBars()")
+      option(v-for='opt in bars.barSizes' v-bind:value="opt.value") {{opt.text}}
+    input(type="text" v-model="bars.labels[2]" placeholder="that's it." )
   
-  span(v-if="bars.labels[2]")
-    span and
-      select(v-model="bars.amounts[3]" v-on:change="buildBars()" v-show="bars.labels[3]")
-        option(v-for='opt in bars.barSizes' v-bind:value="opt.value") {{opt.text}}
-      input(type="text" v-model="bars.labels[3]" placeholder="that's it." )
+  span.criteria(v-if="bars.labels[2]")
+    span.word and
+    select(v-model="bars.amounts[3]" v-on:change="buildBars()" v-show="bars.labels[3]")
+      option(v-for='opt in bars.barSizes' v-bind:value="opt.value") {{opt.text}}
+    input(type="text" v-model="bars.labels[3]" placeholder="that's it." )
   
-  span(v-if="bars.labels[3]")
-    span and
-      select(v-model="bars.amounts[4]" v-on:change="buildBars()" v-show="bars.labels[4]")
-        option(v-for='opt in bars.barSizes' v-bind:value="opt.value") {{opt.text}}
-      input(type="text" v-model="bars.labels[4]" placeholder="that's it." )
+  span.criteria(v-if="bars.labels[3]")
+    span.word and
+    select(v-model="bars.amounts[4]" v-on:change="buildBars()" v-show="bars.labels[4]")
+      option(v-for='opt in bars.barSizes' v-bind:value="opt.value") {{opt.text}}
+    input(type="text" v-model="bars.labels[4]" placeholder="that's it." )
   
-  span(v-if="bars.labels[4]")
-    span and
-      select(v-model="bars.amounts[5]" v-on:change="buildBars()" v-show="bars.labels[5]")
-        option(v-for='opt in bars.barSizes' v-bind:value="opt.value") {{opt.text}}
-      input(type="text" v-model="bars.labels[5]" placeholder="that's it." )
+  span.criteria(v-if="bars.labels[4]")
+    span.word and
+    select(v-model="bars.amounts[5]" v-on:change="buildBars()" v-show="bars.labels[5]")
+      option(v-for='opt in bars.barSizes' v-bind:value="opt.value") {{opt.text}}
+    input(type="text" v-model="bars.labels[5]" placeholder="that's it." )
+      
+  span(v-if="showChart == true")
+    button(v-on:click="buildBars()") GO
+  .button-holder(v-else)
+    button(v-on:click="showChart = true; buildBars()") Prove I'm right!
 
   //-span
     button(v-on:click="buildBars()") build bars

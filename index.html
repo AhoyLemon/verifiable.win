@@ -6,101 +6,115 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Where members of the Trump family can enter in passwords to EARN POINTS.">
-    <meta http-equiv="last-modified" content="2018-04-02@18:25:02">
+    <meta http-equiv="last-modified" content="2018-04-02@21:35:26">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Bitter:400,400i,700|Quicksand">
-    <link href="css/charts.css?lastUpdated=2018-04-02@18:25:02" rel="stylesheet">
+    <link href="css/charts.css?lastUpdated=2018-04-02@21:35:26" rel="stylesheet">
   </head>
   <body>
-    <main id="app">
-      <!--| {{chart.type}}-->
-      <div class="chart-selector" v-bind:class="{ intro: showChart == false}">
-        <section class="intro">
-          <h1>Let's prove you're right!</h1>
-        </section>
-        <h2 class="line-picker" v-if="chart.type == 'line'"><span>show me </span>
-          <select v-model="trend" v-on:change="changeTrend()">
-            <option value="veryUp">a sharp increase</option>
-            <option value="slightlyUp">a slight increase</option>
-            <option value="flat">no noticeable difference</option>
-            <option value="slightlyDown">a slight decrease</option>
-            <option value="veryDown">a sharp decrease</option>
-          </select><span>in </span>
-          <input type="text" v-model="line[0].label" list="LineMeasures">
-          <datalist id="LineMeasures">
-            <option v-for="item in r.lineMeasures">{{item}}</option>
-          </datalist><span>over the last</span>
-          <select v-model="timeline" v-on:change="changeTimeline()">
-            <option>6 months</option>
-            <option>year</option>
-            <option>5 years</option>
-            <option>decade</option>
-            <option>20 years</option>
-            <option>50 years</option>
-          </select>
-          <button v-on:click="changeTimeline()"><span>GENERATE</span></button>
-        </h2>
-        <h2 class="lines-picker" v-if="chart.type == 'lines'"><span>prove that as </span>
-          <input type="text" v-model="lines[0].label">
-          <select v-model="comparison[0].trend" v-on:change="newComparison()">
-            <option value="goesUp">goes up</option>
-            <option value="goesDown">goes down</option>
-            <option value="fluxuates">fluxuates</option>
-            <option value="flat">stays flat</option>
-          </select><span>, </span>
-          <input type="text" v-model="lines[1].label">
-          <select v-model="comparison[1].trend">
-            <option value="goesUp">goes up</option>
-            <option value="goesDown">goes down</option>
-            <option value="fluxuates">fluxuates</option>
-            <option value="flat">stays flat</option>
-          </select>
-          <button v-on:click="changeTimeline()"><span>GENERATE</span></button>
-        </h2>
-        <h2 class="pie-picker" v-if="chart.type == 'pie'"><span>show me</span>
-          <select v-model="pieMoreOrLess" v-on:change="slicePie()">
-            <option value="wayMore">way more</option>
-            <option value="slightlyMore">slightly more</option>
-            <option value="same">the same</option>
-            <option value="slightlyLess">slightly less</option>
-            <option value="wayLess">way less</option>
-          </select>
-          <input type="text" v-model="pie.labels[0]" placeholder="javascript errors"><span v-text="thanOrAs"></span>
-          <input type="text" v-model="pie.labels[1]" placeholder="PHP errors"><span><span>and</span>
-            <input type="text" v-model="pie.labels[2]" placeholder="that's it."></span><span v-if="pie.labels[2]"><span>and</span>
-            <input type="text" v-model="pie.labels[3]" placeholder="that's it."></span><span v-if="pie.labels[3]"><span>and</span>
-            <input type="text" v-model="pie.labels[4]" placeholder="that's it."></span><span v-if="pie.labels[4]"><span>and</span>
-            <input type="text" v-model="pie.labels[5]" placeholder="that's it."></span><span v-if="pie.labels[5]"><span>and</span>
-            <input type="text" v-model="pie.labels[6]" placeholder="that's it."></span><span>
-            <button v-on:click="slicePie()">bake pie</button></span>
-        </h2>
-        <h2 class="pie-picker" v-if="chart.type == 'bars'"><span>show me</span>
-          <select v-model="bars.amounts[0]" v-on:change="buildBars()">
-            <option v-for="opt in bars.barSizes" v-bind:value="opt.value">{{opt.text}}</option>
-          </select>
-          <input type="text" v-model="bars.labels[0]"><span>and</span>
-          <select v-model="bars.amounts[1]" v-on:change="buildBars()">
-            <option v-for="opt in bars.barSizes" v-bind:value="opt.value">{{opt.text}}</option>
-          </select>
-          <input type="text" v-model="bars.labels[1]"><span v-if="bars.labels[1]"><span>and
+    <div id="app">
+      <div class="chart-selector" v-bind:class="{ intro: showChart == false, aside: showChart == true }">
+        <div class="inner">
+          <section class="intro" v-if="showChart == false">
+            <h1>Let's prove you're right!</h1>
+          </section>
+          <div class="chart-options line" v-if="chart.type == 'line'"><span class="criteria"><span class="word">show me </span>
+              <select v-model="trend" v-on:change="changeTrend()">
+                <option value="veryUp">a sharp increase</option>
+                <option value="slightlyUp">a slight increase</option>
+                <option value="flat">no noticeable difference</option>
+                <option value="slightlyDown">a slight decrease</option>
+                <option value="veryDown">a sharp decrease</option>
+              </select><span class="word">in </span>
+              <input type="text" v-model="line[0].label" list="LineMeasures">
+              <datalist id="LineMeasures">
+                <option v-for="item in r.lineMeasures">{{item}}</option>
+              </datalist></span><span class="criteria"><span class="word">over the last</span>
+              <select v-model="timeline" v-on:change="changeTimeline()">
+                <option>6 months</option>
+                <option>year</option>
+                <option>5 years</option>
+                <option>decade</option>
+                <option>20 years</option>
+                <option>50 years</option>
+              </select></span><span v-if="showChart == true">
+              <button v-on:click="changeTimeline()">GO</button></span>
+            <div class="button-holder" v-else>
+              <button v-on:click="showChart = true; changeTimeline()">Prove I'm right!</button>
+            </div>
+          </div>
+          <div class="chart-options lines" v-if="chart.type == 'lines'"><span class="criteria"><span class="word">prove that as </span>
+              <input type="text" v-model="lines[0].label">
+              <select v-model="comparison[0].trend" v-on:change="newComparison()">
+                <option value="goesUp">goes up</option>
+                <option value="goesDown">goes down</option>
+                <option value="fluxuates">fluxuates</option>
+                <option value="flat">stays flat</option>
+              </select><span class="comma word">, </span></span><span class="criteria">
+              <input type="text" v-model="lines[1].label">
+              <select v-model="comparison[1].trend">
+                <option value="goesUp">goes up</option>
+                <option value="goesDown">goes down</option>
+                <option value="fluxuates">fluxuates</option>
+                <option value="flat">stays flat</option>
+              </select></span><span v-if="showChart == true">
+              <button v-on:click="changeTimeline()">GO</button></span>
+            <div class="button-holder" v-else>
+              <button v-on:click="showChart = true; changeTimeline()">Prove I'm right!</button>
+            </div>
+          </div>
+          <div class="chart-options pie" v-if="chart.type == 'pie'"><span class="criteria"><span class="word">show me</span>
+              <select v-model="pieMoreOrLess" v-on:change="remeasureSelect(); slicePie()">
+                <option value="wayMore">way more</option>
+                <option value="slightlyMore">slightly more</option>
+                <option value="same">the same</option>
+                <option value="slightlyLess">slightly less</option>
+                <option value="wayLess">way less</option>
+              </select>
+              <input type="text" v-model="pie.labels[0]" placeholder="javascript errors"></span><span class="criteria"><span class="word" v-text="thanOrAs"></span>
+              <input type="text" v-model="pie.labels[1]" placeholder="PHP errors"></span><span class="criteria"><span class="word">and</span>
+              <input type="text" v-model="pie.labels[2]" placeholder="that's it."></span><span class="criteria" v-if="pie.labels[2]"><span class="word">and</span>
+              <input type="text" v-model="pie.labels[3]" placeholder="that's it."></span><span class="criteria" v-if="pie.labels[3]"><span class="word">and</span>
+              <input type="text" v-model="pie.labels[4]" placeholder="that's it."></span><span class="criteria" v-if="pie.labels[4]"><span class="word">and</span>
+              <input type="text" v-model="pie.labels[5]" placeholder="that's it."></span><span class="criteria" v-if="pie.labels[5]"><span class="word">and</span>
+              <input type="text" v-model="pie.labels[6]" placeholder="that's it."></span><span v-if="showChart == true">
+              <button v-on:click="slicePie()">GO</button></span>
+            <div class="button-holder" v-else>
+              <button v-on:click="showChart = true; slicePie()">Prove I'm right!</button>
+            </div>
+          </div>
+          <div class="chart-options bars" v-if="chart.type == 'bars'"><span class="criteria"><span class="word">show me</span>
+              <select v-model="bars.amounts[0]" v-on:change="buildBars()">
+                <option v-for="opt in bars.barSizes" v-bind:value="opt.value">{{opt.text}}</option>
+              </select>
+              <input type="text" v-model="bars.labels[0]"></span><span class="criteria"><span class="word">and</span>
+              <select v-model="bars.amounts[1]" v-on:change="buildBars()">
+                <option v-for="opt in bars.barSizes" v-bind:value="opt.value">{{opt.text}}</option>
+              </select>
+              <input type="text" v-model="bars.labels[1]"></span><span class="criteria" v-if="bars.labels[1]"><span class="word">and</span>
               <select v-model="bars.amounts[2]" v-on:change="buildBars()">
                 <option v-for="opt in bars.barSizes" v-bind:value="opt.value">{{opt.text}}</option>
               </select>
-              <input type="text" v-model="bars.labels[2]" placeholder="that's it."></span></span><span v-if="bars.labels[2]"><span>and
+              <input type="text" v-model="bars.labels[2]" placeholder="that's it."></span><span class="criteria" v-if="bars.labels[2]"><span class="word">and</span>
               <select v-model="bars.amounts[3]" v-on:change="buildBars()" v-show="bars.labels[3]">
                 <option v-for="opt in bars.barSizes" v-bind:value="opt.value">{{opt.text}}</option>
               </select>
-              <input type="text" v-model="bars.labels[3]" placeholder="that's it."></span></span><span v-if="bars.labels[3]"><span>and
+              <input type="text" v-model="bars.labels[3]" placeholder="that's it."></span><span class="criteria" v-if="bars.labels[3]"><span class="word">and</span>
               <select v-model="bars.amounts[4]" v-on:change="buildBars()" v-show="bars.labels[4]">
                 <option v-for="opt in bars.barSizes" v-bind:value="opt.value">{{opt.text}}</option>
               </select>
-              <input type="text" v-model="bars.labels[4]" placeholder="that's it."></span></span><span v-if="bars.labels[4]"><span>and
+              <input type="text" v-model="bars.labels[4]" placeholder="that's it."></span><span class="criteria" v-if="bars.labels[4]"><span class="word">and</span>
               <select v-model="bars.amounts[5]" v-on:change="buildBars()" v-show="bars.labels[5]">
                 <option v-for="opt in bars.barSizes" v-bind:value="opt.value">{{opt.text}}</option>
               </select>
-              <input type="text" v-model="bars.labels[5]" placeholder="that's it."></span></span>
-        </h2>
+              <input type="text" v-model="bars.labels[5]" placeholder="that's it."></span><span v-if="showChart == true">
+              <button v-on:click="buildBars()">GO</button></span>
+            <div class="button-holder" v-else>
+              <button v-on:click="showChart = true; buildBars()">Prove I'm right!</button>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="chart-holder" v-if="showChart == true">
+      <main class="chart-holder" v-if="showChart == true">
         <section v-if="chart.type == 'line'">
           <chartjs-line :labels="chart.labels" :datasets="line" :bind="true" :option="chart.options"></chartjs-line>
         </section>
@@ -111,10 +125,11 @@
           <chartjs-pie :labels="chart.labels" :data="chart.points" :bind="true" :option="chart.options" :backgroundcolor="pie.backgroundColors" :hoverbackgroundcolor="pie.backgroundColors"></chartjs-pie>
         </section>
         <section v-if="chart.type == 'bars'">
-          <chartjs-bar :labels="chart.labels" :data="chart.points" :bind="true" :option="chart.options" :backgroundcolor="bars.backgroundColors" :bordercolor="'rgba(0,0,0,0)'"></chartjs-bar>
+          <chartjs-bar :labels="chart.labels" :data="chart.points" :bind="true" :option="chart.options" :backgroundcolor="bars.backgroundColors" :height="125" :bordercolor="'rgba(0,0,0,0)'"></chartjs-bar>
         </section>
-      </div>
-    </main>
+      </main>
+      <footer v-if="showChart == true"></footer>
+    </div>
     <div class="javascripts">
       <script src="js/libraries/jquery.min.js"></script>
       <script src="js/libraries/chart.js"></script>

@@ -1,40 +1,43 @@
-h2.pie-picker(v-if="chart.type == 'pie'")
-  span show me
+.chart-options.pie(v-if="chart.type == 'pie'")
 
-  select(v-model="pieMoreOrLess" v-on:change="slicePie()")
-    option(value="wayMore") way more
-    option(value="slightlyMore") slightly more
-    option(value="same") the same
-    option(value="slightlyLess") slightly less
-    option(value="wayLess") way less
+  span.criteria
+    span.word show me
 
+    select(v-model="pieMoreOrLess" v-on:change="remeasureSelect(); slicePie()")
+      option(value="wayMore") way more
+      option(value="slightlyMore") slightly more
+      option(value="same") the same
+      option(value="slightlyLess") slightly less
+      option(value="wayLess") way less
 
+    input(type="text" v-model="pie.labels[0]" placeholder="javascript errors")
+  
+  span.criteria
+    span.word(v-text="thanOrAs")
 
-  input(type="text" v-model="pie.labels[0]" placeholder="javascript errors")
+    input(type="text" v-model="pie.labels[1]" placeholder="PHP errors")
 
-  span(v-text="thanOrAs")
-
-  input(type="text" v-model="pie.labels[1]" placeholder="PHP errors")
-
-  span
-    span and
+  span.criteria
+    span.word and
     input(type="text" v-model="pie.labels[2]" placeholder="that's it." )
 
-  span(v-if="pie.labels[2]")
-    span and
+  span.criteria(v-if="pie.labels[2]")
+    span.word and
     input(type="text" v-model="pie.labels[3]" placeholder="that's it." )
 
-  span(v-if="pie.labels[3]")
-    span and
+  span.criteria(v-if="pie.labels[3]")
+    span.word and
     input(type="text" v-model="pie.labels[4]" placeholder="that's it." )
 
-  span(v-if="pie.labels[4]")
-    span and
+  span.criteria(v-if="pie.labels[4]")
+    span.word and
     input(type="text" v-model="pie.labels[5]" placeholder="that's it." )
 
-  span(v-if="pie.labels[5]")
-    span and
+  span.criteria(v-if="pie.labels[5]")
+    span.word and
     input(type="text" v-model="pie.labels[6]" placeholder="that's it." )
 
-  span
-    button(v-on:click="slicePie()") bake pie
+  span(v-if="showChart == true")
+    button(v-on:click="slicePie()") GO
+  .button-holder(v-else)
+    button(v-on:click="showChart = true; slicePie()") Prove I'm right!
