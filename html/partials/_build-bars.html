@@ -1,18 +1,31 @@
 
-<h2 class="pie-picker" v-if="chart.type == 'bars'"><span>show me</span>
-  <select v-model="pieMoreOrLess" v-on:change="slicePie()">
-    <option value="wayMore">way more</option>
-    <option value="slightlyMore">slightly more</option>
-    <option value="same">the same</option>
-    <option value="slightlyLess">slightly less</option>
-    <option value="wayLess">way less</option>
-  </select>
-  <input type="text" v-model="pie.labels[0]" placeholder="javascript errors"/><span v-text="thanOrAs"></span>
-  <input type="text" v-model="pie.labels[1]" placeholder="PHP errors"/><span><span>and</span>
-    <input type="text" v-model="pie.labels[2]" placeholder="that's it."/></span><span v-if="pie.labels[2]"><span>and</span>
-    <input type="text" v-model="pie.labels[3]" placeholder="that's it."/></span><span v-if="pie.labels[3]"><span>and</span>
-    <input type="text" v-model="pie.labels[4]" placeholder="that's it."/></span><span v-if="pie.labels[4]"><span>and</span>
-    <input type="text" v-model="pie.labels[5]" placeholder="that's it."/></span><span v-if="pie.labels[5]"><span>and</span>
-    <input type="text" v-model="pie.labels[6]" placeholder="that's it."/></span><span>
-    <button v-on:click="slicePie()">bake pie</button></span>
-</h2>
+<div class="chart-options bars" v-if="chart.type == 'bars'"><span class="criteria"><span class="word">show me</span>
+    <select v-model="bars.amounts[0]" v-on:change="buildBars()">
+      <option v-for="opt in bars.barSizes" v-bind:value="opt.value">{{opt.text}}</option>
+    </select>
+    <input type="text" v-model="bars.labels[0]"/></span><span class="criteria"><span class="word">and</span>
+    <select v-model="bars.amounts[1]" v-on:change="buildBars()">
+      <option v-for="opt in bars.barSizes" v-bind:value="opt.value">{{opt.text}}</option>
+    </select>
+    <input type="text" v-model="bars.labels[1]"/></span><span class="criteria" v-if="bars.labels[1]"><span class="word">and</span>
+    <select v-model="bars.amounts[2]" v-on:change="buildBars()">
+      <option v-for="opt in bars.barSizes" v-bind:value="opt.value">{{opt.text}}</option>
+    </select>
+    <input type="text" v-model="bars.labels[2]" placeholder="that's it."/></span><span class="criteria" v-if="bars.labels[2]"><span class="word">and</span>
+    <select v-model="bars.amounts[3]" v-on:change="buildBars()" v-show="bars.labels[3]">
+      <option v-for="opt in bars.barSizes" v-bind:value="opt.value">{{opt.text}}</option>
+    </select>
+    <input type="text" v-model="bars.labels[3]" placeholder="that's it."/></span><span class="criteria" v-if="bars.labels[3]"><span class="word">and</span>
+    <select v-model="bars.amounts[4]" v-on:change="buildBars()" v-show="bars.labels[4]">
+      <option v-for="opt in bars.barSizes" v-bind:value="opt.value">{{opt.text}}</option>
+    </select>
+    <input type="text" v-model="bars.labels[4]" placeholder="that's it."/></span><span class="criteria" v-if="bars.labels[4]"><span class="word">and</span>
+    <select v-model="bars.amounts[5]" v-on:change="buildBars()" v-show="bars.labels[5]">
+      <option v-for="opt in bars.barSizes" v-bind:value="opt.value">{{opt.text}}</option>
+    </select>
+    <input type="text" v-model="bars.labels[5]" placeholder="that's it."/></span><span v-if="showChart == true">
+    <button v-on:click="buildBars()">GO</button></span>
+  <div class="button-holder" v-else="v-else">
+    <button v-on:click="showChart = true; buildBars()">Prove I'm right!</button>
+  </div>
+</div>

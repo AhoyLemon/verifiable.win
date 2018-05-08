@@ -6,9 +6,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Where members of the Trump family can enter in passwords to EARN POINTS.">
-    <meta http-equiv="last-modified" content="2018-04-02@21:35:26">
+    <meta http-equiv="last-modified" content="2018-04-08@16:18:17">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Bitter:400,400i,700|Quicksand">
-    <link href="css/charts.css?lastUpdated=2018-04-02@21:35:26" rel="stylesheet">
+    <link href="css/charts.css?lastUpdated=2018-04-08@16:18:17" rel="stylesheet">
   </head>
   <body>
     <div id="app">
@@ -125,10 +125,9 @@
           <chartjs-pie :labels="chart.labels" :data="chart.points" :bind="true" :option="chart.options" :backgroundcolor="pie.backgroundColors" :hoverbackgroundcolor="pie.backgroundColors"></chartjs-pie>
         </section>
         <section v-if="chart.type == 'bars'">
-          <chartjs-bar :labels="chart.labels" :data="chart.points" :bind="true" :option="chart.options" :backgroundcolor="bars.backgroundColors" :height="125" :bordercolor="'rgba(0,0,0,0)'"></chartjs-bar>
+          <chartjs-bar :labels="chart.labels" :data="chart.points" :bind="true" :option="chart.options" :backgroundcolor="bars.backgroundColors" :bordercolor="'rgba(0,0,0,0)'"></chartjs-bar>
         </section>
       </main>
-      <footer v-if="showChart == true"></footer>
     </div>
     <div class="javascripts">
       <script src="js/libraries/jquery.min.js"></script>

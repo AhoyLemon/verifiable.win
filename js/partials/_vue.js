@@ -392,6 +392,29 @@ var app = new Vue({
       
     },
     
+    setupChart() {
+      var self = this;
+      
+      if (self.chart.type == 'line') {
+        self.changeTimeline();
+      } else if (self.chart.type == 'lines') {
+        let x = randomFrom(lineComparisons);
+        self.lines[0].label = x[0];
+        self.lines[1].label = x[1];
+        self.chart.options.scales.xAxes[0].display = false;
+        self.newComparison();
+      } else if (self.chart.type == 'pie') {
+        self.chart.options.scales.xAxes[0].display = false;
+        self.slicePie();
+      } else if (self.chart.type == 'bars') {
+        self.bars.labels.forEach(function(element) {
+          self.bars.amounts.push(randomFrom(barSizes).value);
+        });
+        self.buildBars();
+      }
+      
+    }
+    
   },
 
   computed: {
@@ -410,25 +433,7 @@ var app = new Vue({
     var self = this;
     
     self.chart.type = randomFrom(chartTypes);
-    
-    if (self.chart.type == 'line') {
-      self.changeTimeline();
-    } else if (self.chart.type == 'lines') {
-      let x = randomFrom(lineComparisons);
-      self.lines[0].label = x[0];
-      self.lines[1].label = x[1];
-      self.chart.options.scales.xAxes[0].display = false;
-      self.newComparison();
-    } else if (self.chart.type == 'pie') {
-      self.chart.options.scales.xAxes[0].display = false;
-      self.slicePie();
-    } else if (self.chart.type == 'bars') {
-      
-      self.bars.labels.forEach(function(element) {
-        self.bars.amounts.push(randomFrom(barSizes).value);
-      });
-      self.buildBars();
-    }
+    self.setupChart();
     
   }
 

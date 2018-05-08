@@ -30,8 +30,6 @@ html(lang="en")
         section(v-if="chart.type == 'pie'")
           chartjs-pie(:labels="chart.labels" :data="chart.points" :bind="true" :option="chart.options" :backgroundcolor="pie.backgroundColors" :hoverbackgroundcolor="pie.backgroundColors")
         section(v-if="chart.type == 'bars'")
-          chartjs-bar(:labels="chart.labels" :data="chart.points" :bind="true" :option="chart.options" :backgroundcolor="bars.backgroundColors" :height="125" :bordercolor="'rgba(0,0,0,0)'")
-          
-      footer(v-if="showChart == true")
+          chartjs-bar(:labels="chart.labels" :data="chart.points" :bind="true" :option="chart.options" :backgroundcolor="bars.backgroundColors" :bordercolor="'rgba(0,0,0,0)'")
           
     include partials/_javascripts.pug
