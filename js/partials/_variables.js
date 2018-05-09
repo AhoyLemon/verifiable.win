@@ -11,6 +11,11 @@ const pieComparisons = [
   [ "javascript errors", "PHP errors", "human error"]
 ];
 
+const barComparisons = [
+  ["people in Lemon's room", "people in Trent's room", "people in Heidi's room",  "people in Michelle's room",  "people in Darrel's room" ] 
+]
+
+
 const lineComparisons = [
   [ "income earned", "happiness"],
   [ "penis size", "SAT test scores"],

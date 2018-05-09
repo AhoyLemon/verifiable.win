@@ -1,12 +1,21 @@
 
-<h2 class="line-picker" v-if="chart.type == 'lines'"><span>prove that as </span>
-  <input type="text" v-model="lines[0].label"/>
-  <select v-model="firstTrend">
-    <option value="goesUp">goes up</option>
-    <option value="goesDown">goes down</option>
-    <option value="fluxuates">fluxuates</option>
-    <option value="flat">stays flat</option>
-  </select><span>, </span>
-  <input type="text" v-model="lines[1].label"/>
-  <button v-on:click="changeTimeline()"><span>GENERATE</span></button>
-</h2>
+<div class="chart-options lines" v-if="chart.type == 'lines'"><span class="criteria"><span class="word">prove that as </span>
+    <input type="text" v-model="lines[0].label"/>
+    <select v-model="comparison[0].trend" v-on:change="newComparison()">
+      <option value="goesUp">goes up</option>
+      <option value="goesDown">goes down</option>
+      <option value="fluxuates">fluxuates</option>
+      <option value="flat">stays flat</option>
+    </select><span class="comma word">, </span></span><span class="criteria">
+    <input type="text" v-model="lines[1].label" v-on:change="newComparison()"/>
+    <select v-model="comparison[1].trend">
+      <option value="goesUp">go up</option>
+      <option value="goesDown">go down</option>
+      <option value="fluxuates">fluxuate</option>
+      <option value="flat">stay flat</option>
+    </select></span><span v-if="showChart == true">
+    <button v-on:click="newComparison()">GO</button></span>
+  <div class="button-holder" v-else="v-else">
+    <button v-on:click="showChart = true; newComparison()">Prove I'm right!</button>
+  </div>
+</div>

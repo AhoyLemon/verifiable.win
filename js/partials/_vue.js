@@ -22,7 +22,7 @@ var app = new Vue({
     timeline: "6 months",
 
     bars: {
-      labels: randomFrom(pieComparisons),
+      labels: randomFrom(barComparisons),
       barSizes: barSizes,
       amounts: [],
       backgroundColors: [],
@@ -45,7 +45,6 @@ var app = new Vue({
         cutoutPercentage: 10,
         legend: {
           position: 'top',
-          //padding: 50
           labels: {
             fontFamily: '"Bitter", serif',
             fontColor: '#333333',
@@ -204,7 +203,6 @@ var app = new Vue({
       self.line[0].pointHoverBorderColor = rC;
       self.line[0].pointHoverBackgroundColor = rC;
 
-      var self = this;
       // GENERATE THE DATA POINTS
       var rMax;
       var rMin;
@@ -264,10 +262,7 @@ var app = new Vue({
         self.chart.labels.push(i);
       }
       
-      if (self.comparison[0].trend == 'goesUp') {
-        rMax = 16;
-        rMin = 2;
-      }
+      //alert(self.chart.labels.length);
       
       for (let i = 0; i < self.chart.labels.length; i++) { 
         if (self.comparison[0].trend == 'goesUp') {
@@ -285,15 +280,18 @@ var app = new Vue({
       
       self.lines[0].data = a;
       
-      if (self.comparison[1].trend == 'goesDown') {
-        rMax = 16;
-        rMin = 2;
-      }
-      
       o = n;
       
       for (let i = 0; i < self.chart.labels.length; i++) { 
-        o = o - (o * (randomNumber(rMax,rMin) / 100));
+        if (self.comparison[1].trend == 'goesUp') {
+          o = o + (n * (randomNumber(2,16) / 100));
+        } else if (self.comparison[1].trend == 'go  esDown') {
+          o = o - (n * (randomNumber(2,16) / 100));
+        } else if (self.comparison[1].trend == 'fluxuates') {
+          o = o + (n * (randomNumber(-50,50) / 100));
+        } else if (self.comparison[1].trend == 'flat') {
+          o = o + (n * (randomNumber(-2,2) / 100));
+        }
         b.push(o);
       }
       
@@ -316,7 +314,7 @@ var app = new Vue({
       
       
       // Generate Slice colors
-      self.pie.backgroundColors = []
+      self.pie.backgroundColors = [];
       
       let h = shuffle(hues);
       
@@ -366,7 +364,7 @@ var app = new Vue({
       // Figure out the colors
       let h = shuffle(hues);
       for (let i = 0; i < self.bars.labels.length; i++) {
-        if (i == 0) {
+        if (i === 0) {
           self.bars.backgroundColors.push(randomColor({ hue: h[i], luminosity:'bright', alpha:1 }));
         } else {
           self.bars.backgroundColors.push(randomColor({ format: 'rgba', luminosity:'dark', hue: h[i], alpha:0.5 }));
@@ -381,7 +379,7 @@ var app = new Vue({
         else if (self.bars.amounts[i] == 50) { n = (randomNumber(40,60) * 3); }
         else if (self.bars.amounts[i] == 25) { n = (randomNumber(15,35) * 2); }
         else if (self.bars.amounts[i] == 5)  { n = randomNumber(1,9); }
-        else if (self.bars.amounts[i] == 0)  { n = 0; }
+        else if (self.bars.amounts[i] < 5)  { n = 0; }
         self.chart.points.push(n);
       }
       
@@ -433,6 +431,7 @@ var app = new Vue({
     var self = this;
     
     self.chart.type = randomFrom(chartTypes);
+    //self.chart.type = "bars";
     self.setupChart();
     
   }

@@ -14,15 +14,15 @@
     span.comma.word , 
     
   span.criteria
-    input(type="text" v-model="lines[1].label")
+    input(type="text" v-model="lines[1].label" v-on:change="newComparison()")
 
     select(v-model="comparison[1].trend")
-      option(value="goesUp") goes up
-      option(value="goesDown") goes down
-      option(value="fluxuates") fluxuates
-      option(value="flat") stays flat
+      option(value="goesUp") go up
+      option(value="goesDown") go down
+      option(value="fluxuates") fluxuate
+      option(value="flat") stay flat
 
   span(v-if="showChart == true")
-    button(v-on:click="changeTimeline()") GO
+    button(v-on:click="newComparison()") GO
   .button-holder(v-else)
-    button(v-on:click="showChart = true; changeTimeline()") Prove I'm right!
+    button(v-on:click="showChart = true; newComparison()") Prove I'm right!

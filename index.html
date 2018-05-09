@@ -6,9 +6,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Where members of the Trump family can enter in passwords to EARN POINTS.">
-    <meta http-equiv="last-modified" content="2018-04-08@16:18:17">
+    <meta http-equiv="last-modified" content="2018-04-09@10:56:06">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Bitter:400,400i,700|Quicksand">
-    <link href="css/charts.css?lastUpdated=2018-04-08@16:18:17" rel="stylesheet">
+    <link href="css/charts.css?lastUpdated=2018-04-09@10:56:06" rel="stylesheet">
   </head>
   <body>
     <div id="app">
@@ -50,16 +50,16 @@
                 <option value="fluxuates">fluxuates</option>
                 <option value="flat">stays flat</option>
               </select><span class="comma word">, </span></span><span class="criteria">
-              <input type="text" v-model="lines[1].label">
+              <input type="text" v-model="lines[1].label" v-on:change="newComparison()">
               <select v-model="comparison[1].trend">
-                <option value="goesUp">goes up</option>
-                <option value="goesDown">goes down</option>
-                <option value="fluxuates">fluxuates</option>
-                <option value="flat">stays flat</option>
+                <option value="goesUp">go up</option>
+                <option value="goesDown">go down</option>
+                <option value="fluxuates">fluxuate</option>
+                <option value="flat">stay flat</option>
               </select></span><span v-if="showChart == true">
-              <button v-on:click="changeTimeline()">GO</button></span>
+              <button v-on:click="newComparison()">GO</button></span>
             <div class="button-holder" v-else>
-              <button v-on:click="showChart = true; changeTimeline()">Prove I'm right!</button>
+              <button v-on:click="showChart = true; newComparison()">Prove I'm right!</button>
             </div>
           </div>
           <div class="chart-options pie" v-if="chart.type == 'pie'"><span class="criteria"><span class="word">show me</span>
