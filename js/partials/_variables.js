@@ -14,7 +14,8 @@ const pieComparisons = [
 ];
 
 const barComparisons = [
-  ["people in Lemon's room", "people in Trent's room", "people in Heidi's room",  "people in Michele's room",  "people in Darrel's room" ] 
+  ["Xbox owners", "PlayStation owners", "PC Gamers"],
+  ["beer sales", "wine sales", "liquor sales"]
 ];
 
 
@@ -23,7 +24,7 @@ const lineComparisons = [
   [ "penis size", "SAT test scores"],
   [ "car price", "safety rating"],
   [ "Instagram use", "Facebook use"],
-  [ "People who think the world is flat", "Dumb people" ]
+  [ "Flat Earthers", "Dumb people" ]
 ];
 
 const hues = ['red','orange','yellow','green','blue','purple','pink'];
