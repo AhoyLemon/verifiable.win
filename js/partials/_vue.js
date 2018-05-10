@@ -16,6 +16,7 @@ var app = new Vue({
         trend: 'goesDown'
       }
     ],
+    allChartTypes: chartTypes,
     showChart: false,
     trend: 'veryUp',
     timeline: "6 months",
@@ -204,7 +205,7 @@ var app = new Vue({
       } else if (m == 'day') {
         for (let i = 0; i < c; i++) { 
           d = moment(d).add(1, m);
-          a.push(moment(d).format('YYYY'));
+          a.push(moment(d).format('MMM Do'));
         }
       }
 
@@ -457,7 +458,7 @@ var app = new Vue({
     var self = this;
 
     //self.chart.type = randomFrom(chartTypes);
-    self.chart.type = "lines";
+    self.chart.type = "pie";
     self.setupChart();
 
   }

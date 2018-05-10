@@ -4,7 +4,7 @@ const chartTypes = [
 ];
 
 const lineMeasures = [
-  "marijuana use", "teen pregnancy", "average sperm count", "javascript errors", "scuba diving accidents"
+  "marijuana use", "teen pregnancy", ".NET developers", "javascript errors", "scuba diving accidents", "conference hangovers"
 ];
 
 const pieComparisons = [
@@ -14,7 +14,7 @@ const pieComparisons = [
 ];
 
 const barComparisons = [
-  ["people in Lemon's room", "people in Trent's room", "people in Heidi's room",  "people in Michelle's room",  "people in Darrel's room" ] 
+  ["people in Lemon's room", "people in Trent's room", "people in Heidi's room",  "people in Michele's room",  "people in Darrel's room" ] 
 ];
 
 

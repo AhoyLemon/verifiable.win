@@ -296,11 +296,6 @@ main {
 
 .chart-selector.aside {
   background: url(../img/hip-square.png);
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  width: 320px;
   padding: 10px;
   line-height: 350%; }
   .chart-selector.aside .word {
@@ -365,5 +360,13 @@ main {
   -webkit-animation-timing-function: linear;
   animation-timing-function: linear;
   animation-direction: alternate-reverse; }
+
+@media screen and (min-width: 601px) {
+  .chart-selector.aside {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 320px; } }
 
 /*# sourceMappingURL=charts.css.map */

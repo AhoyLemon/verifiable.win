@@ -34,7 +34,7 @@
   .criteria { display: block; margin-bottom: 0.75em; }
 }
 
-.chart-selector.aside { background: url(../img/hip-square.png); @include position(fixed,0,null,0,0); width:320px; padding: 10px; line-height: 350%;
+.chart-selector.aside { background: url(../img/hip-square.png); padding: 10px; line-height: 350%; 
   .word { padding-right: 0.25em; } 
   button { color:$white; background:$blue;  font-size:120%; display: block; border:3px solid $blue; padding: 0.3em 1.5em; cursor: pointer;
     &:hover { background: $white; color:$blue; }
@@ -58,4 +58,13 @@
 
 .chart-selector.intro {
   h1 { animation-name: extrude; animation-duration: 1s; animation-iteration-count: infinite; animation-timing-function: linear; animation-direction: alternate-reverse; }
+}
+
+
+@media screen and (max-width:$mobile-max) {
+  .chart-selector.aside {  }
+}
+
+@media screen and (min-width:$desktop-min) {
+  .chart-selector.aside { @include position(fixed,0,null,0,0); width:320px; }
 }
