@@ -10,12 +10,16 @@ const lineMeasures = [
 const pieComparisons = [
   [ "maulings by bears", "attacks by shark", "death by chocolate", "killed by bee stings"],
   [ "javascript errors", "PHP errors", "human error"],
-  [ "built with Ruby", "built with node.js", "built with PHP", "built with .NET"]
+  [ "built with Ruby", "built with node.js", "built with PHP", "built with .NET"],
+  [ "working computers", "broken computers"]
 ];
 
 const barComparisons = [
   ["Xbox owners", "PlayStation owners", "PC Gamers"],
   ["beer sales", "wine sales", "liquor sales"]
+  ["lies", "damn lies", "statistics"],
+  ["mistakes", "apologies"],
+  ["people who are wrong", "people who think they're wrong"]
 ];
 
 
@@ -23,8 +27,7 @@ const lineComparisons = [
   [ "income earned", "happiness"],
   [ "penis size", "SAT test scores"],
   [ "car price", "safety rating"],
-  [ "Instagram use", "Facebook use"],
-  [ "Flat Earthers", "Dumb people" ]
+  [ "Instagram use", "Facebook use"]
 ];
 
 const hues = ['red','orange','yellow','green','blue','purple','pink'];
