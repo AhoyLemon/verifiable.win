@@ -181,6 +181,9 @@ var app = new Vue({
       } else if (self.timeline == "50 years") {
         c = 50;
         m = "year";
+      } else if (self.timeline == "2 weeks") {
+        c = 14;
+        m = "day";
       }
 
 
@@ -194,6 +197,11 @@ var app = new Vue({
           a.push(moment(d).format('MMMM YYYY'));
         }
       } else if (m == 'year') {
+        for (let i = 0; i < c; i++) { 
+          d = moment(d).add(1, m);
+          a.push(moment(d).format('YYYY'));
+        }
+      } else if (m == 'day') {
         for (let i = 0; i < c; i++) { 
           d = moment(d).add(1, m);
           a.push(moment(d).format('YYYY'));
@@ -449,7 +457,7 @@ var app = new Vue({
     var self = this;
 
     //self.chart.type = randomFrom(chartTypes);
-    self.chart.type = "line";
+    self.chart.type = "lines";
     self.setupChart();
 
   }
