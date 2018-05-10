@@ -22,7 +22,9 @@ const lineComparisons = [
   [ "income earned", "happiness"],
   [ "penis size", "SAT test scores"],
   [ "car price", "safety rating"],
-  [ "Instagram use", "Facebook use"]
+  [ "Instagram use", "Facebook use"],
+  [ "People who think the world is flat", "Dumb people" ]
+  
 ];
 
 const hues = ['red','orange','yellow','green','blue','purple','pink'];

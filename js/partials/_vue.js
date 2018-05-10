@@ -457,8 +457,8 @@ var app = new Vue({
   beforeMount: function() {
     var self = this;
 
-    //self.chart.type = randomFrom(chartTypes);
-    self.chart.type = "pie";
+    self.chart.type = randomFrom(chartTypes);
+    //self.chart.type = "lines";
     self.setupChart();
 
   }

@@ -1,6 +1,6 @@
 - var testing = true
-- var siteTitle = "Fake Chart Tests"
-- var siteURL = ""
+- var siteTitle = "Verifiable WIn"
+- var siteURL = "http://verifiable.win"
 - var fPlusURL = false
 - var description = "Where members of the Trump family can enter in passwords to EARN POINTS."
 - var d = new Date()
@@ -21,6 +21,9 @@ html(lang="en")
           include partials/_build-lines.pug
           include partials/_build-pie.pug
           include partials/_build-bars.pug
+          
+          section.type-buttons(v-if="showChart == false")
+            button(v-for="type in allChartTypes" v-on:click="chart.type = type") {{type}}
       
       main.chart-holder(v-if="showChart == true")
         section(v-if="chart.type == 'line'") 
@@ -31,5 +34,7 @@ html(lang="en")
           chartjs-pie(:labels="chart.labels" :data="chart.points" :bind="true" :option="chart.options" :backgroundcolor="pie.backgroundColors" :hoverbackgroundcolor="pie.backgroundColors")
         section(v-if="chart.type == 'bars'")
           chartjs-bar(:labels="chart.labels" :data="chart.points" :bind="true" :option="chart.options" :backgroundcolor="bars.backgroundColors" :bordercolor="'rgba(0,0,0,0)'")
+          
+        button.download-chart(v-on:click="downloadCanvas(null,null,'proof')") Download chart
           
     include partials/_javascripts.pug
