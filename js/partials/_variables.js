@@ -24,7 +24,6 @@ const lineComparisons = [
   [ "car price", "safety rating"],
   [ "Instagram use", "Facebook use"],
   [ "People who think the world is flat", "Dumb people" ]
-  
 ];
 
 const hues = ['red','orange','yellow','green','blue','purple','pink'];

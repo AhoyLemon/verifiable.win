@@ -20,6 +20,7 @@ var app = new Vue({
     showChart: false,
     trend: 'veryUp',
     timeline: "6 months",
+    browserWidth: window.innerWidth,
 
     bars: {
       labels: randomFrom(barComparisons),

@@ -6,9 +6,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="The site that proves how right you are.">
-    <meta http-equiv="last-modified" content="2018-04-10@13:18:12">
+    <meta http-equiv="last-modified" content="2018-04-10@13:35:54">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Bitter:400,400i,700|Quicksand">
-    <link href="css/charts.css?lastUpdated=2018-04-10@13:18:12" rel="stylesheet">
+    <link href="css/charts.css?lastUpdated=2018-04-10@13:35:54" rel="stylesheet">
     <!-- Twitter-->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:creator" content="@AhoyLemon">
@@ -141,7 +141,22 @@
           </section>
         </div>
       </div>
-      <main class="chart-holder" v-if="showChart == true">
+      <main class="chart-holder" v-if="showChart == true &amp;&amp; browserWidth &lt; 600">
+        <section v-if="chart.type == 'line'"> 
+          <chartjs-line :labels="chart.labels" :height="300" :datasets="line" :bind="true" :option="chart.options" :backgroundcolor="'rgba(75,192,192,1)'"></chartjs-line>
+        </section>
+        <section v-if="chart.type == 'lines'">
+          <chartjs-line :labels="chart.labels" :height="300" :datasets="lines" :bind="true" :option="chart.options"></chartjs-line>
+        </section>
+        <section v-if="chart.type == 'pie'">
+          <chartjs-pie :labels="chart.labels" :height="300" :data="chart.points" :bind="true" :option="chart.options" :backgroundcolor="pie.backgroundColors" :hoverbackgroundcolor="pie.backgroundColors"></chartjs-pie>
+        </section>
+        <section v-if="chart.type == 'bars'">
+          <chartjs-bar :labels="chart.labels" :height="300" :data="chart.points" :bind="true" :option="chart.options" :backgroundcolor="bars.backgroundColors" :bordercolor="'rgba(0,0,0,0)'"></chartjs-bar>
+        </section>
+        <button class="download-chart" v-on:click="downloadCanvas(null,null,'proof')">Download chart</button>
+      </main>
+      <main class="chart-holder" v-else-if="showChart == true &amp;&amp; browserWidth &gt; 599">
         <section v-if="chart.type == 'line'"> 
           <chartjs-line :labels="chart.labels" :datasets="line" :bind="true" :option="chart.options" :backgroundcolor="'rgba(75,192,192,1)'"></chartjs-line>
         </section>
