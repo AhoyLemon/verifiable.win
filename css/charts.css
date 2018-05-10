@@ -316,6 +316,12 @@ main {
     .chart-selector.aside button:hover {
       background: #eee;
       color: #113471; }
+    .chart-selector.aside button.hide-sidebar {
+      color: #212121;
+      background: #eee; }
+      .chart-selector.aside button.hide-sidebar:hover {
+        background: #212121;
+        color: #eee; }
 
 @-webkit-keyframes extrude {
   0% {

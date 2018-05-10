@@ -4,7 +4,6 @@
 var app = new Vue({
   el: '#app',
   data: {
-    message: 'Hello Vue!',
     pieMoreOrLess: 'slightlyMore',
     r: {
       lineMeasures: lineMeasures
@@ -69,7 +68,9 @@ var app = new Vue({
         scales: {
           xAxes: [
             { display: true,
-             fontColor: "White"
+             ticks: {
+               fontColor: "#fff"
+             }
             }
             //fontColor: '#0000FF'
           ],
@@ -379,7 +380,7 @@ var app = new Vue({
         if (i === 0) {
           self.bars.backgroundColors.push(randomColor({ hue: h[i], luminosity:'bright', alpha:1 }));
         } else {
-          self.bars.backgroundColors.push(randomColor({ format: 'rgba', luminosity:'dark', hue: h[i], alpha:0.5 }));
+          self.bars.backgroundColors.push(randomColor({ format: 'rgba', luminosity:'bright', hue: h[i], alpha:0.75 }));
         }
       }
 
@@ -427,10 +428,8 @@ var app = new Vue({
     
     downloadCanvas: function (width, height, filename) {
       var c = document.getElementsByTagName("canvas")[0];
-      //c.style.backgroundColor = '#f0f1f2';
-      Canvas2Image.saveAsJPEG(c, 1600, 900, filename);
-      //link.download = filename;
-    },
+      Canvas2Image.saveAsJPEG(c, width, height, filename);
+    }
 
   },
 
@@ -450,7 +449,7 @@ var app = new Vue({
     var self = this;
 
     //self.chart.type = randomFrom(chartTypes);
-    self.chart.type = "pie";
+    self.chart.type = "line";
     self.setupChart();
 
   }

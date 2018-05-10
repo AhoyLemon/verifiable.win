@@ -38,6 +38,11 @@
   .word { padding-right: 0.25em; } 
   button { color:$white; background:$blue;  font-size:120%; display: block; border:3px solid $blue; padding: 0.3em 1.5em; cursor: pointer;
     &:hover { background: $white; color:$blue; }
+    
+    &.hide-sidebar { color:$black; background:$white; 
+      &:hover { background:$black; color:$white; }
+    }
+    
   }
 }
 
