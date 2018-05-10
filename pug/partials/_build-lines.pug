@@ -17,10 +17,10 @@
     input(type="text" v-model="lines[1].label" v-on:change="newComparison()")
 
     select(v-model="comparison[1].trend")
-      option(value="goesUp") go up
-      option(value="goesDown") go down
-      option(value="fluxuates") fluxuate
-      option(value="flat") stay flat
+      option(value="goesUp") goes up
+      option(value="goesDown") goes down
+      option(value="fluxuates") fluxuates
+      option(value="flat") stays flat
 
   span(v-if="showChart == true")
     button(v-on:click="newComparison()") GO

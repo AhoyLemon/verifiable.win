@@ -23,13 +23,14 @@ html(lang="en")
           include partials/_build-bars.pug
       
       main.chart-holder(v-if="showChart == true")
-        section(v-if="chart.type == 'line'")
-          chartjs-line(:labels="chart.labels" :datasets="line" :bind="true" :option="chart.options")
+        section(v-if="chart.type == 'line'") 
+          chartjs-line(:labels="chart.labels" :datasets="line" :bind="true" :option="chart.options" :backgroundcolor="'rgba(75,192,192,1)'")
         section(v-if="chart.type == 'lines'")
           chartjs-line(:labels="chart.labels" :datasets="lines" :bind="true" :option="chart.options")
         section(v-if="chart.type == 'pie'")
           chartjs-pie(:labels="chart.labels" :data="chart.points" :bind="true" :option="chart.options" :backgroundcolor="pie.backgroundColors" :hoverbackgroundcolor="pie.backgroundColors")
         section(v-if="chart.type == 'bars'")
           chartjs-bar(:labels="chart.labels" :data="chart.points" :bind="true" :option="chart.options" :backgroundcolor="bars.backgroundColors" :bordercolor="'rgba(0,0,0,0)'")
+        button(v-on:click="downloadCanvas(this, 'LineChart', 'test.png');") Download Chart
           
     include partials/_javascripts.pug

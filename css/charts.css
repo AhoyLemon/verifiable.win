@@ -171,8 +171,11 @@ sup {
 svg {
   overflow: hidden; }
 
+[v-cloak] {
+  display: none !important; }
+
 body {
-  background: #eee; }
+  background: #333; }
 
 main {
   font-family: "Bitter", serif; }
@@ -292,8 +295,7 @@ main {
     margin-bottom: 0.75em; }
 
 .chart-selector.aside {
-  background: #111;
-  color: #eee;
+  background: url(../img/hip-square.png);
   position: fixed;
   top: 0;
   bottom: 0;

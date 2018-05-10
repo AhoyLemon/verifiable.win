@@ -37,6 +37,9 @@ var app = new Vue({
     chart: {
       type: 'bars',
       responsive:true,
+      chartArea: {
+        backgroundColor: 'rgba(251, 85, 85, 0.9)'
+      },
       maintainAspectRatio:true,
       labels: [1,2,3,4,5,6],
       points: [],
@@ -47,26 +50,26 @@ var app = new Vue({
           position: 'top',
           labels: {
             fontFamily: '"Bitter", serif',
-            fontColor: '#333333',
+            fontColor: '#aaaaaa',
             fontSize: 24,
             padding: 36
           }
         },
         tooltips: {
-          enabled: true
+          enabled: false
         },
         animation: {
           duration: 2000,
           onComplete: function(e) {
-            console.log(e);
+            //var c = document.getElementsByTagName("canvas")[0];
           },
           animateScale: true,
-          
+
         },
         scales: {
           xAxes: [
             { display: true,
-              fontColor: "White"
+             fontColor: "White"
             }
             //fontColor: '#0000FF'
           ],
@@ -108,13 +111,13 @@ var app = new Vue({
         spanGaps: false
       }
     ],
-    
+
     lines: [
       {
         label: '',
         fill: false,
         lineTension: 0.1,
-        borderColor: randomColor({ hue: 'red', luminosity: 'dark' }),
+        borderColor: randomColor({ hue: 'red', luminosity: 'bright' }),
         borderCapStyle: 'round',
         pointBackgroundColor: "#fff",
         data: [],
@@ -122,13 +125,13 @@ var app = new Vue({
         pointRadius: 2
         //pointBorderColor: randomColor({ hue: 'red', luminosity: 'bright' }),
         //pointRadius: 5
-        
+
       },
       {
         label: '',
         fill: false,
         lineTension: 0.1,
-        borderColor: randomColor({ hue: 'blue', luminosity: 'dark' }),
+        borderColor: randomColor({ hue: 'blue', luminosity: 'bright' }),
         borderCapStyle: 'round',
         borderJoinStyle: 'miter',
         data: [],
@@ -141,8 +144,17 @@ var app = new Vue({
 
   },
 
-  methods: {
+  created: function () {
+    window.addEventListener('keyup', function(e) {
+      console.log('you pressed ' + e.which);
+      if ((e.keyCode || e.which) == 32) {
+        // Code here, if you want it.
+      }
+    }, true);
+  },
 
+
+  methods: {
 
     changeTimeline: function() {
       var self = this;
@@ -196,7 +208,7 @@ var app = new Vue({
 
       var self = this;
 
-      let rC = randomColor({ luminosity: 'dark', format: 'rgb' });
+      let rC = randomColor({ luminosity: 'bright', format: 'rgb' });
       self.line[0].backgroundColor = rC.replace(')', ', 0.3)').replace('rgb', 'rgba');
       self.line[0].borderColor = rC.replace(')', ', 0.6)').replace('rgb', 'rgba');
       self.line[0].pointBorderColor = rC;
@@ -207,10 +219,10 @@ var app = new Vue({
       var rMax;
       var rMin;
       if (self.trend == "veryUp") { rMax = 30; rMin = 7;
-      } else if (self.trend == "slightlyUp") { rMax = 10; rMin = -2;
-      } else if (self.trend == "flat") { // handled differently.
-      } else if (self.trend == "slightlyDown") { rMax = -10; rMin = 2;
-      } else if (self.trend == "veryDown") { rMax = -30; rMin = -7;
+                                  } else if (self.trend == "slightlyUp") { rMax = 10; rMin = -2;
+                                                                         } else if (self.trend == "flat") { // handled differently.
+                                                                         } else if (self.trend == "slightlyDown") { rMax = -10; rMin = 2;
+                                                                                                                  } else if (self.trend == "veryDown") { rMax = -30; rMin = -7;
       }
 
 
@@ -243,60 +255,60 @@ var app = new Vue({
       self.chart.options.legend.position = 'bottom';
 
     },
-    
+
     newComparison: function() {
       var self = this;
-      
+
       let a = [];
       let b = [];
-      
+
       let n = 1000;
       let o = 1000;
-      
+
       let rMax;
       let rMin;
-      
+
       self.chart.labels = [];
-      
+
       for (let i = 0; i < 20; i++) { 
         self.chart.labels.push(i);
       }
-      
+
       //alert(self.chart.labels.length);
-      
+
       for (let i = 0; i < self.chart.labels.length; i++) { 
         if (self.comparison[0].trend == 'goesUp') {
           n = n + (n * (randomNumber(2,16) / 100));
         } else if (self.comparison[0].trend == 'goesDown') {
           n = n - (n * (randomNumber(2,16) / 100));
         } else if (self.comparison[0].trend == 'fluxuates') {
-          n = n + (n * (randomNumber(-50,50) / 100));
+          n = n + (n * (randomNumber(-22,22) / 100));
         } else if (self.comparison[0].trend == 'flat') {
           n = n + (n * (randomNumber(-2,2) / 100));
         }
-        
+
         a.push(n);
       }
-      
+
       self.lines[0].data = a;
-      
+
       o = n;
-      
+
       for (let i = 0; i < self.chart.labels.length; i++) { 
         if (self.comparison[1].trend == 'goesUp') {
           o = o + (n * (randomNumber(2,16) / 100));
-        } else if (self.comparison[1].trend == 'go  esDown') {
+        } else if (self.comparison[1].trend == 'goesDown') {
           o = o - (n * (randomNumber(2,16) / 100));
         } else if (self.comparison[1].trend == 'fluxuates') {
-          o = o + (n * (randomNumber(-50,50) / 100));
+          o = o + (n * (randomNumber(-22,22) / 100));
         } else if (self.comparison[1].trend == 'flat') {
           o = o + (n * (randomNumber(-2,2) / 100));
         }
         b.push(o);
       }
-      
+
       self.lines[1].data = b;
-      
+
     },
 
     slicePie: function() {
@@ -311,28 +323,28 @@ var app = new Vue({
       let firstSlice;
 
       let percentLeft = 100;
-      
-      
+
+
       // Generate Slice colors
       self.pie.backgroundColors = [];
-      
+
       let h = shuffle(hues);
-      
+
       for (let i = 0; i < sliceCount; i++) {
         if (i === 0) {
           self.pie.backgroundColors.push(randomColor({ hue: h[i], luminosity:'bright', alpha:1 }));
         } else {
-          self.pie.backgroundColors.push(randomColor({ format: 'rgba', luminosity:'dark', hue: h[i], alpha:0.5 }));
+          self.pie.backgroundColors.push(randomColor({ format: 'rgba', luminosity:'bright', hue: h[i], alpha:0.75 }));
         }
       }
 
       if (self.pieMoreOrLess == "wayMore") { firstSlice = randomNumber(43,70); 
-      } else if (self.pieMoreOrLess == "slightlyMore") { firstSlice = equalSlice + (equalSlice * (randomNumber(13,26) / 100));
-      } else if (self.pieMoreOrLess == "same") { firstSlice =  equalSlice + randomNumber(-2,2);
-      } else if (self.pieMoreOrLess == "slightlyLess") { firstSlice = equalSlice - (equalSlice * (randomNumber(13,26) / 100));
+                                           } else if (self.pieMoreOrLess == "slightlyMore") { firstSlice = equalSlice + (equalSlice * (randomNumber(13,26) / 100));
+                                                                                            } else if (self.pieMoreOrLess == "same") { firstSlice =  equalSlice + randomNumber(-2,2);
+                                                                                                                                     } else if (self.pieMoreOrLess == "slightlyLess") { firstSlice = equalSlice - (equalSlice * (randomNumber(13,26) / 100));
       } else if (self.pieMoreOrLess == "wayLess") { firstSlice = randomNumber(6,13);
-      }
-      
+                                                  }
+
       self.chart.options.scales.yAxes[0].display = false;
       self.chart.options.scales.yAxes[0].ticks.beginAtZero = false;
 
@@ -359,8 +371,8 @@ var app = new Vue({
 
     buildBars: function() {
       var self = this;
-      
-      
+
+
       // Figure out the colors
       let h = shuffle(hues);
       for (let i = 0; i < self.bars.labels.length; i++) {
@@ -370,7 +382,7 @@ var app = new Vue({
           self.bars.backgroundColors.push(randomColor({ format: 'rgba', luminosity:'dark', hue: h[i], alpha:0.5 }));
         }
       }
-      
+
       self.chart.points = [];
       for (let i = 0; i < self.bars.labels.length; i++) {
         let n = 0;
@@ -382,17 +394,17 @@ var app = new Vue({
         else if (self.bars.amounts[i] < 5)  { n = 0; }
         self.chart.points.push(n);
       }
-      
+
       self.chart.labels = self.bars.labels;
       self.chart.options.legend.display = false;
-      
+
       self.chart.options.scales.yAxes[0].display = false;
-      
+
     },
-    
+
     setupChart() {
       var self = this;
-      
+
       if (self.chart.type == 'line') {
         self.changeTimeline();
       } else if (self.chart.type == 'lines') {
@@ -410,9 +422,16 @@ var app = new Vue({
         });
         self.buildBars();
       }
-      
-    }
+
+    },
     
+    downloadCanvas: function (width, height, filename) {
+      var c = document.getElementsByTagName("canvas")[0];
+      //c.style.backgroundColor = '#f0f1f2';
+      Canvas2Image.saveAsJPEG(c, 1600, 900, filename);
+      //link.download = filename;
+    },
+
   },
 
   computed: {
@@ -429,11 +448,11 @@ var app = new Vue({
 
   beforeMount: function() {
     var self = this;
-    
-    self.chart.type = randomFrom(chartTypes);
-    //self.chart.type = "bars";
+
+    //self.chart.type = randomFrom(chartTypes);
+    self.chart.type = "pie";
     self.setupChart();
-    
+
   }
 
 });

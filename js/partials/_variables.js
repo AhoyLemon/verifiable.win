@@ -1,3 +1,4 @@
+// jshint -W104
 const chartTypes = [
   "pie", "bars", "line", "lines"
 ];
@@ -7,13 +8,14 @@ const lineMeasures = [
 ];
 
 const pieComparisons = [
-  [ "maulings by bears", "attacks by shark", "death by chocolate", "shot by hilbillies"],
-  [ "javascript errors", "PHP errors", "human error"]
+  [ "maulings by bears", "attacks by shark", "death by chocolate", "killed by bee stings"],
+  [ "javascript errors", "PHP errors", "human error"],
+  [ "built with Ruby", "built with node.js", "built with PHP", "built with .NET"]
 ];
 
 const barComparisons = [
   ["people in Lemon's room", "people in Trent's room", "people in Heidi's room",  "people in Michelle's room",  "people in Darrel's room" ] 
-]
+];
 
 
 const lineComparisons = [

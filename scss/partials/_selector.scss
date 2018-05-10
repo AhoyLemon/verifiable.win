@@ -34,7 +34,7 @@
   .criteria { display: block; margin-bottom: 0.75em; }
 }
 
-.chart-selector.aside { background:#111; color:$white; @include position(fixed,0,null,0,0); width:320px; padding: 10px; line-height: 350%;
+.chart-selector.aside { background: url(../img/hip-square.png); @include position(fixed,0,null,0,0); width:320px; padding: 10px; line-height: 350%;
   .word { padding-right: 0.25em; } 
   button { color:$white; background:$blue;  font-size:120%; display: block; border:3px solid $blue; padding: 0.3em 1.5em; cursor: pointer;
     &:hover { background: $white; color:$blue; }
